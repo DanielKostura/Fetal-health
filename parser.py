@@ -26,7 +26,7 @@ def load_columns_c_to_y(path: str = 'fetal_health.xlsx') -> pd.DataFrame:
 		header_row = 0
 
 	# read again with correct header
-	df = pd.read_excel(path, usecols='C:Y', engine='openpyxl', header=header_row)
+	df = pd.read_excel(path, usecols='A:W', engine='openpyxl', header=header_row)
 	# clean column names
 	df.columns = [str(c).strip() for c in df.columns]
 	return df
