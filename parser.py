@@ -10,7 +10,7 @@ def load_columns_c_to_y(path: str = 'fetal_health.xlsx') -> pd.DataFrame:
 	re-reads using that row as header so resulting DataFrame has proper columns.
 	"""
 	try:
-		raw = pd.read_excel(path, usecols='C:Y', engine='openpyxl', header=None)
+		raw = pd.read_excel(path, usecols='A:W', engine='openpyxl', header=None)
 	except ImportError as e:
 		raise ImportError("openpyxl is required to read .xlsx files. Install it with: pip install openpyxl") from e
 
