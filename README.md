@@ -16,7 +16,7 @@ pip install streamlit pandas altair
 
 ### Running the App
 
-Place `app1_5.py` and `fetal_health.csv` in the same directory, then run:
+Place `app.py` and `fetal_health.csv` in the same directory, then run:
 
 ```bash
 streamlit run app1_5.py
