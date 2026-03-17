@@ -19,7 +19,7 @@ pip install streamlit pandas altair
 Place `app.py` and `fetal_health.csv` in the same directory, then run:
 
 ```bash
-streamlit run app1_5.py
+streamlit run app.py
 ```
 
 The app will open automatically in your default browser at `http://localhost:8501`.
@@ -88,7 +88,7 @@ All four charts are **cross-linked**:
 
 ```
 .
-├── app1_5.py          # Main Streamlit application
+├── app.py          # Main Streamlit application
 ├── fetal_health.csv   # CTG dataset
 └── README.md          # This file
 ```
