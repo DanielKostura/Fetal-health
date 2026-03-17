@@ -70,6 +70,7 @@ All four charts are **cross-linked**:
 - **Brush selection** — click and drag in any scatter/strip plot to highlight a subset of data points
 - **Legend filtering** — click a health category in the legend to isolate it across all charts
 - **Combined filtering** — selections from multiple charts stack together; only points satisfying all active selections are highlighted
+- **Zooming** — select an area and use the scroll wheel to zoom in or out
 - Unselected points turn light gray, keeping the full data context visible
 
 ---
