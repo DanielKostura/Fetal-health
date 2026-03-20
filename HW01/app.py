@@ -1,12 +1,14 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
+from pathlib import Path
 
 # --- Základní nastavení ---
 st.set_page_config(page_title="Analýza Fetal Health", layout="wide")
 st.title("Interaktivní analýza CTG vyšetření")
 
-file_path = "fetal_health.csv" 
+BASE_DIR = Path(__file__).resolve().parent
+file_path = BASE_DIR.parent / "dataset" / "fetal_health.csv"
 try:
     # 1. Načtení dat
     df = pd.read_csv(file_path, sep=';')
