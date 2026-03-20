@@ -1,0 +1,5 @@
+Nekonzistentné pomenovania hodnôt v atribútoch hospital a diagnosis.
+Duplicitné hodnoty.
+Chýbajúce hodnoty.
+Šum v hodnotách ("O" -> Nan, ~13 -> 13).
+Nekonzistencia neuvedených hodnôt.
