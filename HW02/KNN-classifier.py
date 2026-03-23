@@ -21,6 +21,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 from sklearn.impute import KNNImputer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import RobustScaler
@@ -83,6 +84,10 @@ print(f"Chybějící hodnoty:\n{df.isnull().sum()}")
 df.to_csv("IB031_dataset_clean.csv", index=False)
 print("\nVyčištěný dataset uložen jako 'IB031_dataset_clean.csv'")
 
+# Create directory for images
+IMAGE_DIR = "images"
+os.makedirs(IMAGE_DIR, exist_ok=True)
+
 # ─────────────────────────────────────────────
 # 5. EDA – Vizualizace genů podle diagnózy
 # ─────────────────────────────────────────────
@@ -100,7 +105,7 @@ for ax, gene in zip(axes, genes):
     ax.legend()
 
 plt.tight_layout()
-plt.savefig("eda_histogram.png", dpi=150)
+plt.savefig(os.path.join(IMAGE_DIR, "eda_histogram.png"), dpi=150)
 plt.close()
 
 # Boxploty
@@ -114,7 +119,7 @@ for ax, gene in zip(axes, genes):
     ax.set_ylabel("Aktivita genu")
 
 plt.tight_layout()
-plt.savefig("eda_boxplot.png", dpi=150)
+plt.savefig(os.path.join(IMAGE_DIR, "eda_boxplot.png"), dpi=150)
 plt.close()
 
 # Scatter plot: TP53 vs EGFR
@@ -126,7 +131,7 @@ plt.ylabel("EGFR")
 plt.title("TP53 vs EGFR podle diagnózy")
 plt.legend()
 plt.tight_layout()
-plt.savefig("eda_scatter.png", dpi=150)
+plt.savefig(os.path.join(IMAGE_DIR, "eda_scatter.png"), dpi=150)
 plt.close()
 
 print("EDA grafy uloženy.")
@@ -170,9 +175,9 @@ plt.title(f"Matice záměn (Accuracy = {accuracy:.2f})")
 plt.ylabel("Skutečná třída")
 plt.xlabel("Predikovaná třída")
 plt.tight_layout()
-plt.savefig("confusion_matrix.png", dpi=150)
+plt.savefig(os.path.join(IMAGE_DIR, "confusion_matrix.png"), dpi=150)
 plt.close()
-print("Matice záměn uložena jako 'confusion_matrix.png'")
+print(f"Matice záměn uložena jako '{os.path.join(IMAGE_DIR, 'confusion_matrix.png')}'")
 
 # ─────────────────────────────────────────────
 # 8. VÝPIS NALEZENÝCH CHYB (shrnutí)
