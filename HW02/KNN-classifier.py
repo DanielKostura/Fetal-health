@@ -1,20 +1,6 @@
 """
 IB031 - Domácí úkol 2
 Analýza datasetu pacientů, čištění dat, EDA a trénování KNeighborsClassifier.
-
-Nalezené chyby a nekonzistence v datasetu:
-1. sample_id řádek 39: obsahuje tabulátor na začátku ('\tS039') → opraveno strip()
-2. sample_id řádek 44: hodnota 'S050 ' obsahuje mezery → opraveno strip()
-3. sample_id řádek 44 vs 50: duplicitní sample_id 'S050' (dva různí pacienti) → řádek 44 má ID P044,
-   jeho sample_id bylo opraveno na 'S044' dle pořadí
-4. patient_id řádek 0: obsahuje trailing mezeru 'P000 ' → opraveno strip()
-5. hospital řádek 87: 'st  anne' (malá písmena, dvojitá mezera) místo 'St_Anne' → normalizováno
-6. Chybějící hodnoty (NaN):
-   - age: 1 chybějící hodnota (řádek 13)
-   - TP53: 1 chybějící hodnota (řádek 76)
-   - EGFR: 1 chybějící hodnota (řádek 24)
-   - SEPT2: 4 chybějící hodnoty (řádky 1, 23, 48, 98)
-   → Nahrazeno pomocí KNNImputer (k=5)
 """
 
 import pandas as pd
