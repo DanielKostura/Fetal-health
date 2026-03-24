@@ -1,0 +1,1 @@
+Team project and homeworks for the IB031 course at FI MUNI.

@@ -1,26 +1,13 @@
 """
 IB031 - Domácí úkol 2
 Analýza datasetu pacientů, čištění dat, EDA a trénování KNeighborsClassifier.
-
-Nalezené chyby a nekonzistence v datasetu:
-1. sample_id řádek 39: obsahuje tabulátor na začátku ('\tS039') → opraveno strip()
-2. sample_id řádek 44: hodnota 'S050 ' obsahuje mezery → opraveno strip()
-3. sample_id řádek 44 vs 50: duplicitní sample_id 'S050' (dva různí pacienti) → řádek 44 má ID P044,
-   jeho sample_id bylo opraveno na 'S044' dle pořadí
-4. patient_id řádek 0: obsahuje trailing mezeru 'P000 ' → opraveno strip()
-5. hospital řádek 87: 'st  anne' (malá písmena, dvojitá mezera) místo 'St_Anne' → normalizováno
-6. Chybějící hodnoty (NaN):
-   - age: 1 chybějící hodnota (řádek 13)
-   - TP53: 1 chybějící hodnota (řádek 76)
-   - EGFR: 1 chybějící hodnota (řádek 24)
-   - SEPT2: 4 chybějící hodnoty (řádky 1, 23, 48, 98)
-   → Nahrazeno pomocí KNNImputer (k=5)
 """
 
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 from sklearn.impute import KNNImputer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import RobustScaler
@@ -83,6 +70,10 @@ print(f"Chybějící hodnoty:\n{df.isnull().sum()}")
 df.to_csv("IB031_dataset_clean.csv", index=False)
 print("\nVyčištěný dataset uložen jako 'IB031_dataset_clean.csv'")
 
+# Create directory for images
+IMAGE_DIR = "images"
+os.makedirs(IMAGE_DIR, exist_ok=True)
+
 # ─────────────────────────────────────────────
 # 5. EDA – Vizualizace genů podle diagnózy
 # ─────────────────────────────────────────────
@@ -100,7 +91,7 @@ for ax, gene in zip(axes, genes):
     ax.legend()
 
 plt.tight_layout()
-plt.savefig("eda_histogram.png", dpi=150)
+plt.savefig(os.path.join(IMAGE_DIR, "eda_histogram.png"), dpi=150)
 plt.close()
 
 # Boxploty
@@ -114,7 +105,7 @@ for ax, gene in zip(axes, genes):
     ax.set_ylabel("Aktivita genu")
 
 plt.tight_layout()
-plt.savefig("eda_boxplot.png", dpi=150)
+plt.savefig(os.path.join(IMAGE_DIR, "eda_boxplot.png"), dpi=150)
 plt.close()
 
 # Scatter plot: TP53 vs EGFR
@@ -126,7 +117,7 @@ plt.ylabel("EGFR")
 plt.title("TP53 vs EGFR podle diagnózy")
 plt.legend()
 plt.tight_layout()
-plt.savefig("eda_scatter.png", dpi=150)
+plt.savefig(os.path.join(IMAGE_DIR, "eda_scatter.png"), dpi=150)
 plt.close()
 
 print("EDA grafy uloženy.")
@@ -170,9 +161,9 @@ plt.title(f"Matice záměn (Accuracy = {accuracy:.2f})")
 plt.ylabel("Skutečná třída")
 plt.xlabel("Predikovaná třída")
 plt.tight_layout()
-plt.savefig("confusion_matrix.png", dpi=150)
+plt.savefig(os.path.join(IMAGE_DIR, "confusion_matrix.png"), dpi=150)
 plt.close()
-print("Matice záměn uložena jako 'confusion_matrix.png'")
+print(f"Matice záměn uložena jako '{os.path.join(IMAGE_DIR, 'confusion_matrix.png')}'")
 
 # ─────────────────────────────────────────────
 # 8. VÝPIS NALEZENÝCH CHYB (shrnutí)

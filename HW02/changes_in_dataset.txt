@@ -1,5 +1,17 @@
-Nekonzistentné pomenovania hodnôt v atribútoch hospital a diagnosis.
-Duplicitné hodnoty.
-Chýbajúce hodnoty.
-Šum v hodnotách ("O" -> Nan, ~13 -> 13).
-Nekonzistencia neuvedených hodnôt.
+╔══════════════════════════════════════════════════════════════╗
+║           SOUHRN NALEZENÝCH CHYB A NEKONZISTENCÍ             ║
+╠══════════════════════════════════════════════════════════════╣
+║ 1. Bílý znak v sample_id: '\tS039' (tabulátor na začátku)   ║
+║ 2. Mezera v sample_id: 'S050 ' (trailing whitespace)        ║
+║ 3. Duplicitní sample_id: 'S050' pro dva různé pacienty      ║
+║    (P044 a P050) → P044 opraven na 'S044'                   ║
+║ 4. Mezera v patient_id: 'P000 ' (trailing whitespace)       ║
+║ 5. Nekonzistentní název nemocnice: 'st  anne' místo         ║
+║    'St_Anne' (malá písmena + dvojitá mezera)                 ║
+║ 6. Chybějící hodnoty (NaN):                                  ║
+║    - age: 1x (řádek 13)                                      ║
+║    - TP53: 1x (řádek 76)                                     ║
+║    - EGFR: 1x (řádek 24)                                     ║
+║    - SEPT2: 4x (řádky 1, 23, 48, 98)                        ║
+║    → Všechny doplněny pomocí KNNImputer (k=5)               ║
+╚══════════════════════════════════════════════════════════════╝
